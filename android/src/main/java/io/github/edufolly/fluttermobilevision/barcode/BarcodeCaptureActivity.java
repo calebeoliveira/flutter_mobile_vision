@@ -87,8 +87,11 @@ public final class BarcodeCaptureActivity extends AbstractCaptureActivity<Barcod
     public void onBarcodeDetected(final Barcode barcode) {
         if (!waitTap) {
             ArrayList<Barcode> list = new ArrayList<>(1);
-            list.add(barcode);
-            success(list);
+
+            if (barcode.rawValue.length() == 44) {
+                list.add(barcode);
+                success(list);
+            }
         }
     }
 
